@@ -3212,6 +3212,14 @@ Raphael = (function () {
         delete this[this[length]--];
         return this.items.pop();
     };
+    Set[proto].shift = function() {
+        var shifted = this.items.shift();
+        for (var i = 0, ii = this.items[length]; i < ii; i++) {
+            this[i] = this.items[i];
+        }
+        this[length]--;
+        return shifted;
+    };
     for (var method in Element[proto]) if (Element[proto][has](method)) {
         Set[proto][method] = (function (methodname) {
             return function () {
